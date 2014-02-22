@@ -4,3 +4,5 @@ f = sio.loadmat('classic400.mat', squeeze_me=True, struct_as_record=False)
 vocab =  f['classicwordlist']
 Y = np.array(f['truelabels'])
 X = f['classic400'] #scipy.sparse.csc_matrix
+K = 3 #no. of topics
+Z = perform_lda(X, K, 0, 0, 2) #infers z
