@@ -5,4 +5,9 @@ vocab =  f['classicwordlist']
 Y = np.array(f['truelabels'])
 X = f['classic400'] #scipy.sparse.csc_matrix
 K = 3 #no. of topics
-Z = perform_lda(X, K, 0, 0, 2) #infers z
+a = np.ones(K, dtype=float) #alpha
+b = np.ones(len(vocab), dtype=float) #beta
+Z = perform_lda(X, K, a, b, 30) #infers z
+Y_pred = predict(Z, K, X.sum(axis=1))
+np.savetxt("y.txt",Y, fmt='%d')
+np.savetxt("y_pred.txt", Y_pred, fmt='%d')
