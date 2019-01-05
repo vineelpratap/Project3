@@ -22,12 +22,12 @@ During Acoustic model training, we train the model to produce the
 
 ![alt text](acoustic_model.png)
 
-##### Feature Extraction
+#### Feature Extraction
 wav2letter++ currently supports multiple audio file formats (e.g. wav, flac... / mono, stereo / int, float) and several feature types including the raw audio, a linearly scaled power spectrum , log-Mels (MFSC) and MFCCs.
 The features are computed on the fly prior to each network evaluation.
 For this tutorial, we will use MFCC features which can be specified using the gflag `-mfcc`.
 
-##### Defining the Neural Network
+#### Defining the Neural Network
 wav2letter++ provides an easy way to define `fl::Sequential` module using `-arch` and `-archdir` flags. This makes it easier to explore different network architectures with a single binary. 
 It is also possible plugin your own custom network by defining new `fl::Module` .
 
@@ -49,15 +49,15 @@ L 128 NLABEL 		# fl::Linear Layer with 128 input channels and `NLABEL` output ch
 
 ```
 
-##### Choosing the Loss Criterion
+#### Choosing the Loss Criterion
 wav2letter++ supports many end-to-end sequence models such as ConnectionistTemporalClassification, AutoSegmentationCriterion and Sequence-to-Sequence models with attention. For this tutorial, we will use CTC criterion which is specified using `-ctc` flag.
 
-##### Training the Model
+#### Training the Model
 Documentation on training the models can be found here 
 
 
 ## Language Models and Decoding
-##### Training Language Models
+#### Training Language Models
 wav2letter++ currently support decoding using n-gram Language Models. We have abstracted away the logic for LM integration so that it is easy to plugin ConvLM, RNNLM etc.. and we plan to support them soon. For this tutorial, we will use [KenLM](https://github.com/kpu/kenlm) to train a simple unigram Language Model for our dataset. 
 
 First download and build KenLM from source 
@@ -68,7 +68,7 @@ Train the Language Model
 
  
 
-##### Beam-search decoding
+#### Beam-search decoding
 wav2letter++ uses beam-search decoder to find the best transcription for the given utterance. It supports tuning of hyperparameters like beamsize, beamscore, silweight, wordscore, lmweight etc. 
 Typically, one should a grid search on these to find the hyperparameters on the validation set and use it for testing. 
 
