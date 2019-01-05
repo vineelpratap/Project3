@@ -20,8 +20,7 @@ Since the dataset we are using does not come with separate train/valid/test sets
 
 During Acoustic model training, we train the model to produce the 
 
-![Acoustic Model](acoustic_model.png)
-Format: ![Acoustic Model]
+![alt text](acoustic_model.png)
 
 ##### Feature Extraction
 wav2letter++ currently supports multiple audio file formats (e.g. wav, flac... / mono, stereo / int, float) and several feature types including the raw audio, a linearly scaled power spectrum , log-Mels (MFSC) and MFCCs.
@@ -38,15 +37,15 @@ For this tutorial, we will use the following 5 -layer Network with ReLU activati
 # network.arch
 # Input Shape - TIMEFRAMES x NFEAT x NCHANNEL x BATCHSIZE
 V -1 1 NFEAT 1        	# fl::View layer to convert input to appropriate shape for temporal convolution. 
-     	# NFEAT is replaced with appropriate feature dimension size at runtime. 
+     			# NFEAT is replaced with appropriate feature dimension size at runtime. 
 C1 NFEAT 128 8 1 -1 	# Temporal Convolution with output channels = 128, filter size = 8, 
-# stride = 1 and “SAME” padding
+			# stride = 1 and “SAME” padding
 C1 128 128 8 1 -1 
 C1 128 128 8 1 -1 
 C1 128 128 8 1 -1 
 RO 2 0 3 1		# fl::Reorder Layer to convert input to appropriate shape for Linear layer
 L 128 NLABEL 		# fl::Linear Layer with 128 input channels and `NLABEL` output channels.
-	# NLABEL is replaced with appropriate token size at runtime. 
+			# NLABEL is replaced with appropriate token size at runtime. 
 
 ```
 
